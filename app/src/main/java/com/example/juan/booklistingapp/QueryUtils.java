@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 public final class QueryUtils {
 
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
+    private static final String KEY_ITEMS = "items";
     private static final String KEY_VOLUMEINFO = "volumeInfo";
     private static final String KEY_TITLE = "title";
     private static final String KEY_AUTHORS = "authors";
@@ -111,61 +114,65 @@ public final class QueryUtils {
             return null;
         }
         try {
-            JSONObject baseJson = new JSONObject(json);
-            JSONArray items = baseJson.getJSONArray("items");
-
             String title;
             JSONArray authors;
+            JSONArray items;
             String author;
             String publishedDate;
-            String textSnippet;
+            String textSnippet = "No description avaible.";
             String previewLink;
 
+            JSONObject baseJson = new JSONObject(json);
 
-            for (int i = 0; i < items.length(); i++) {
-                JSONObject item = items.getJSONObject(i);
-                JSONObject volumeInfo = item.getJSONObject(KEY_VOLUMEINFO);
-                title = volumeInfo.getString(KEY_TITLE);
-                if (volumeInfo.has(KEY_AUTHORS)) {
-                    authors = volumeInfo.getJSONArray(KEY_AUTHORS);
-                    author = authors.getString(0);
-                } else {
-                    author = null;
-                }
-                if (volumeInfo.has(KEY_PUBLISHED_DATE)) {
-                    publishedDate = volumeInfo.getString(KEY_PUBLISHED_DATE);
-                } else {
-                    publishedDate = "No published date available.";
-                }
+            if (!baseJson.has(KEY_ITEMS)) {
+                return null;
+            } else {
+                items = baseJson.getJSONArray(KEY_ITEMS);
 
-                JSONObject searchInfo = item.getJSONObject(KEY_SEARCH_INFO);
-                if (searchInfo.has(KEY_TEXTSNIPPET)) {
-                    textSnippet = searchInfo.getString(KEY_TEXTSNIPPET);
-
-                } else {
-                    textSnippet = "No description available.";
-                }
-
-                if (volumeInfo.has(KEY_PREVIEWLINK)) {
-                    previewLink = volumeInfo.getString(KEY_PREVIEWLINK);
-                } else {
-                    previewLink = "No information link available.";
-                }
-
-                if (volumeInfo.has("imageLinks")) {
-                    JSONObject image = volumeInfo.getJSONObject("imageLinks");
-                    imageLink = image.getString("smallThumbnail");
-                    try {
-                        URL url = new URL(imageLink);
-                        bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    } catch (MalformedURLException e) {
-                        Log.e(LOG_TAG, "Invalid Image URL", e);
-                    } catch (IOException e) {
-                        Log.e(LOG_TAG, "Cannnot load image", e);
+                for (int i = 0; i < items.length(); i++) {
+                    JSONObject item = items.getJSONObject(i);
+                    JSONObject volumeInfo = item.getJSONObject(KEY_VOLUMEINFO);
+                    title = volumeInfo.getString(KEY_TITLE);
+                    if (volumeInfo.has(KEY_AUTHORS)) {
+                        authors = volumeInfo.getJSONArray(KEY_AUTHORS);
+                        author = authors.getString(0);
+                    } else {
+                        author = "No author available.";
                     }
+                    if (volumeInfo.has(KEY_PUBLISHED_DATE)) {
+                        publishedDate = volumeInfo.getString(KEY_PUBLISHED_DATE);
+                    } else {
+                        publishedDate = "No published date available.";
+                    }
+
+                    if (item.has(KEY_SEARCH_INFO)) {
+                        JSONObject searchInfo = item.getJSONObject(KEY_SEARCH_INFO);
+                        if (searchInfo.has(KEY_TEXTSNIPPET)) {
+                            textSnippet = searchInfo.getString(KEY_TEXTSNIPPET);
+                        }
+                    }
+                    if (volumeInfo.has(KEY_PREVIEWLINK)) {
+                        previewLink = volumeInfo.getString(KEY_PREVIEWLINK);
+                    } else {
+                        previewLink = "No information link available.";
+                    }
+
+                    if (volumeInfo.has("imageLinks")) {
+                        JSONObject image = volumeInfo.getJSONObject("imageLinks");
+                        imageLink = image.getString("smallThumbnail");
+                        try {
+                            URL url = new URL(imageLink);
+                            bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                        } catch (MalformedURLException e) {
+                            Log.e(LOG_TAG, "Invalid Image URL", e);
+                        } catch (IOException e) {
+                            Log.e(LOG_TAG, "Cannnot load image", e);
+                        }
+                    }
+
+                    Book bookItem = new Book(bmp, title, author, publishedDate, textSnippet, previewLink);
+                    bookItems.add(bookItem);
                 }
-                Book bookItem = new Book(bmp, title, author, publishedDate, textSnippet, previewLink);
-                bookItems.add(bookItem);
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Problem parsing the earthquake JSON results", e);
