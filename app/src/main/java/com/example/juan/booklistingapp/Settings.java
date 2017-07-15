@@ -1,9 +1,5 @@
 package com.example.juan.booklistingapp;
 
-/**
- * Created by Juan on 14/07/2017.
- */
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;

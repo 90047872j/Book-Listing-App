@@ -2,7 +2,6 @@ package com.example.juan.booklistingapp;
 
 import android.graphics.Bitmap;
 
-
 public class Book {
 
     private String title;
