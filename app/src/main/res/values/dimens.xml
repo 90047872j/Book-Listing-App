@@ -1,0 +1,19 @@
+<resources>
+    <dimen name="list_item_layout_margin">2dp</dimen>
+    <dimen name="image_width">128dp</dimen>
+    <dimen name="image_height">154dp</dimen>
+    <dimen name="image_margin">2dp</dimen>
+    <dimen name="image_padding">8dp</dimen>
+    <dimen name="tv_title_text_size">20sp</dimen>
+    <dimen name="tv_title_padding_limits">4dp</dimen>
+    <dimen name="tv_title_padding_sides">8dp</dimen>
+    <dimen name="tv_author_text_size">16sp</dimen>
+    <dimen name="tv_author_margin_top">4dp</dimen>
+    <dimen name="tv_author_margin_sides">6dp</dimen>
+    <dimen name="tv_author_margin_bottom">2dp</dimen>
+    <dimen name="tv_pDate_text_size">14sp</dimen>
+    <dimen name="tv_pDate_margin_sides">6dp</dimen>
+    <dimen name="tv_pDate_margin_bottom">2dp</dimen>
+    <dimen name="tv_description_text_size">12sp</dimen>
+    <dimen name="tv_description_margin">6dp</dimen>
+</resources>

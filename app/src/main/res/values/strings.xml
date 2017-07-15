@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">BookListingApp</string>
+    <string name="app_label">Book Listing</string>
+    <string name="settings_title">Book List Settings</string>
+    <string name="no_connection">No internet connection.</string>
+    <string name="no_description">No available description.</string>
+    <string name="no_results">No results found.</string>
+    <string name="settings_search_by_label">Search by:</string>
+    <string name="settings_search_by_default">love</string>
+    <string name="setting_search_by_key">q</string>
+    <string name="settings_resultsNumber_label">Max Results:</string>
+    <string name="settings_resultsNumber_default">13</string>
+    <string name="settings_resultsNumber_key">maxResults</string>
+    <string name="default_title">Title</string>
+    <string name="default_author">Author</string>
+    <string name="default_published_date">Published Date</string>
+    <string name="default_description">Description</string>
+
+</resources>

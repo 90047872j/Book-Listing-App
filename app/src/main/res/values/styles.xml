@@ -1,0 +1,54 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="iv_book_style">
+        <item name="android:layout_width">@dimen/image_width</item>
+        <item name="android:layout_height">@dimen/image_height</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@color/colorBackground</item>
+        <item name="android:padding">@dimen/image_padding</item>
+    </style>
+
+    <style name="tv_title_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@color/colorBackground</item>
+        <item name="android:paddingBottom">@dimen/tv_title_padding_limits</item>
+        <item name="android:paddingLeft">@dimen/tv_title_padding_sides</item>
+        <item name="android:paddingRight">@dimen/tv_title_padding_sides</item>
+        <item name="android:paddingTop">@dimen/tv_title_padding_limits</item>
+        <item name="android:textSize">@dimen/tv_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="tv_author_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/tv_author_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/tv_author_margin_sides</item>
+        <item name="android:layout_marginRight">@dimen/tv_author_margin_sides</item>
+        <item name="android:layout_marginTop">@dimen/tv_author_margin_top</item>
+        <item name="android:textSize">@dimen/tv_title_text_size</item>
+    </style>
+
+    <style name="tv_pDate_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginBottom">@dimen/tv_pDate_margin_bottom</item>
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:layout_marginRight">6dp</item>
+        <item name="android:textSize">@dimen/tv_pDate_text_size</item>
+    </style>
+
+    <style name="tv_description_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/tv_description_margin</item>
+        <item name="android:textSize">@dimen/tv_description_text_size</item>
+    </style>
+</resources>
+

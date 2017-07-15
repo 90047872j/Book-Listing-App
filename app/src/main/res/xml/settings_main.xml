@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+
+        android:defaultValue="@string/settings_search_by_default"
+        android:inputType="text"
+        android:key="@string/setting_search_by_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/settings_search_by_label"/>
+    <EditTextPreference
+        android:defaultValue="@string/settings_resultsNumber_default"
+        android:inputType="numberDecimal"
+        android:key="@string/settings_resultsNumber_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/settings_resultsNumber_label"/>
+</PreferenceScreen>
